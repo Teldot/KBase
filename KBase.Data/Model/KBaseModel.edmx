@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KBaseDBModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\ND\Documents\Visual Studio 2015\Projects\KBase\KBase.Data\KBaseDB.db3&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KnowledgeAreaId" Type="integer" Nullable="false" />
+          <Property Name="ThemeId" Type="integer" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Content" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ArticleContent">
+          <Key>
+            <PropertyRef Name="ArticleContentId" />
+          </Key>
+          <Property Name="ArticleContentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ArticleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ObjectTypeId" Type="integer" Nullable="false" />
+          <Property Name="Object" Type="image" Nullable="false" />
+          <Property Name="ObjectUrl" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ModificationDate" Type="datetime" />
+          <Property Name="ObjectIndex" Type="integer" />
+        </EntityType>
+        <EntityType Name="CatType">
+          <Key>
+            <PropertyRef Name="CatTypeId" />
+          </Key>
+          <Property Name="CatTypeId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatVal">
+          <Key>
+            <PropertyRef Name="CatValId" />
+          </Key>
+          <Property Name="CatValId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatTypeId" Type="integer" Nullable="false" />
+          <Property Name="Val" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="CatParent0" Type="integer" />
+          <Property Name="CatParent1" Type="integer" />
+          <Property Name="CatParent2" Type="integer" />
+          <Property Name="CatParent3" Type="integer" />
+        </EntityType>
+        <Association Name="FK_Article_0_0">
+          <End Role="CatVal" Type="Self.CatVal" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="ThemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_1_0">
+          <End Role="CatVal" Type="Self.CatVal" Multiplicity="1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="KnowledgeAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleContent_0_0">
+          <End Role="CatVal" Type="Self.CatVal" Multiplicity="1" />
+          <End Role="ArticleContent" Type="Self.ArticleContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="ArticleContent">
+              <PropertyRef Name="ObjectTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleContent_1_0">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="ArticleContent" Type="Self.ArticleContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="ArticleContent">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatVal_0_0">
+          <End Role="CatVal" Type="Self.CatVal" Multiplicity="0..1" />
+          <End Role="CatVal1" Type="Self.CatVal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="CatVal1">
+              <PropertyRef Name="CatParent3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatVal_1_0">
+          <End Role="CatVal" Type="Self.CatVal" Multiplicity="0..1" />
+          <End Role="CatVal1" Type="Self.CatVal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="CatVal1">
+              <PropertyRef Name="CatParent2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatVal_2_0">
+          <End Role="CatVal" Type="Self.CatVal" Multiplicity="0..1" />
+          <End Role="CatVal1" Type="Self.CatVal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="CatVal1">
+              <PropertyRef Name="CatParent1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatVal_3_0">
+          <End Role="CatVal" Type="Self.CatVal" Multiplicity="0..1" />
+          <End Role="CatVal1" Type="Self.CatVal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="CatVal1">
+              <PropertyRef Name="CatParent0" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatVal_4_0">
+          <End Role="CatType" Type="Self.CatType" Multiplicity="1" />
+          <End Role="CatVal" Type="Self.CatVal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatType">
+              <PropertyRef Name="CatTypeId" />
+            </Principal>
+            <Dependent Role="CatVal">
+              <PropertyRef Name="CatTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KBaseDBModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" store:Type="Tables" />
+          <EntitySet Name="ArticleContent" EntityType="Self.ArticleContent" store:Type="Tables" />
+          <EntitySet Name="CatType" EntityType="Self.CatType" store:Type="Tables" />
+          <EntitySet Name="CatVal" EntityType="Self.CatVal" store:Type="Tables" />
+          <AssociationSet Name="FK_Article_0_0" Association="Self.FK_Article_0_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_1_0" Association="Self.FK_Article_1_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleContent_0_0" Association="Self.FK_ArticleContent_0_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="ArticleContent" EntitySet="ArticleContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleContent_1_0" Association="Self.FK_ArticleContent_1_0">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ArticleContent" EntitySet="ArticleContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatVal_0_0" Association="Self.FK_CatVal_0_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="CatVal1" EntitySet="CatVal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatVal_1_0" Association="Self.FK_CatVal_1_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="CatVal1" EntitySet="CatVal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatVal_2_0" Association="Self.FK_CatVal_2_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="CatVal1" EntitySet="CatVal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatVal_3_0" Association="Self.FK_CatVal_3_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="CatVal1" EntitySet="CatVal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatVal_4_0" Association="Self.FK_CatVal_4_0">
+            <End Role="CatType" EntitySet="CatType" />
+            <End Role="CatVal" EntitySet="CatVal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KBaseDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KBaseDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CatType" EntityType="KBaseDBModel.CatType" />
+          <EntitySet Name="CatVal" EntityType="KBaseDBModel.CatVal" />
+          <AssociationSet Name="FK_CatVal_4_0" Association="KBaseDBModel.FK_CatVal_4_0">
+            <End Role="CatType" EntitySet="CatType" />
+            <End Role="CatVal" EntitySet="CatVal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatVal_0_0" Association="KBaseDBModel.FK_CatVal_0_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="CatVal1" EntitySet="CatVal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatVal_1_0" Association="KBaseDBModel.FK_CatVal_1_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="CatVal1" EntitySet="CatVal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatVal_2_0" Association="KBaseDBModel.FK_CatVal_2_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="CatVal1" EntitySet="CatVal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatVal_3_0" Association="KBaseDBModel.FK_CatVal_3_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="CatVal1" EntitySet="CatVal" />
+          </AssociationSet>
+          <EntitySet Name="Article" EntityType="KBaseDBModel.Article" />
+          <EntitySet Name="ArticleContent" EntityType="KBaseDBModel.ArticleContent" />
+          <AssociationSet Name="FK_Article_0_0" Association="KBaseDBModel.FK_Article_0_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_1_0" Association="KBaseDBModel.FK_Article_1_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleContent_1_0" Association="KBaseDBModel.FK_ArticleContent_1_0">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ArticleContent" EntitySet="ArticleContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleContent_0_0" Association="KBaseDBModel.FK_ArticleContent_0_0">
+            <End Role="CatVal" EntitySet="CatVal" />
+            <End Role="ArticleContent" EntitySet="ArticleContent" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CatType">
+          <Key>
+            <PropertyRef Name="CatTypeId" />
+          </Key>
+          <Property Name="CatTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CatVal" Relationship="KBaseDBModel.FK_CatVal_4_0" FromRole="CatType" ToRole="CatVal" />
+        </EntityType>
+        <EntityType Name="CatVal">
+          <Key>
+            <PropertyRef Name="CatValId" />
+          </Key>
+          <Property Name="CatValId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Val" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="CatParent0" Type="Int64" />
+          <Property Name="CatParent1" Type="Int64" />
+          <Property Name="CatParent2" Type="Int64" />
+          <Property Name="CatParent3" Type="Int64" />
+          <NavigationProperty Name="CatType" Relationship="KBaseDBModel.FK_CatVal_4_0" FromRole="CatVal" ToRole="CatType" />
+          <NavigationProperty Name="CatVal1" Relationship="KBaseDBModel.FK_CatVal_0_0" FromRole="CatVal" ToRole="CatVal1" />
+          <NavigationProperty Name="CatValCatParent3" Relationship="KBaseDBModel.FK_CatVal_0_0" FromRole="CatVal1" ToRole="CatVal" />
+          <NavigationProperty Name="CatVal11" Relationship="KBaseDBModel.FK_CatVal_1_0" FromRole="CatVal" ToRole="CatVal1" />
+          <NavigationProperty Name="CatValCatParent2" Relationship="KBaseDBModel.FK_CatVal_1_0" FromRole="CatVal1" ToRole="CatVal" />
+          <NavigationProperty Name="CatVal12" Relationship="KBaseDBModel.FK_CatVal_2_0" FromRole="CatVal" ToRole="CatVal1" />
+          <NavigationProperty Name="CatValCatParent1" Relationship="KBaseDBModel.FK_CatVal_2_0" FromRole="CatVal1" ToRole="CatVal" />
+          <NavigationProperty Name="CatVal13" Relationship="KBaseDBModel.FK_CatVal_3_0" FromRole="CatVal" ToRole="CatVal1" />
+          <NavigationProperty Name="CatValCatParent0" Relationship="KBaseDBModel.FK_CatVal_3_0" FromRole="CatVal1" ToRole="CatVal" />
+          <NavigationProperty Name="Article" Relationship="KBaseDBModel.FK_Article_0_0" FromRole="CatVal" ToRole="Article" />
+          <NavigationProperty Name="Article1" Relationship="KBaseDBModel.FK_Article_1_0" FromRole="CatVal" ToRole="Article" />
+          <NavigationProperty Name="ArticleContent" Relationship="KBaseDBModel.FK_ArticleContent_0_0" FromRole="CatVal" ToRole="ArticleContent" />
+        </EntityType>
+        <Association Name="FK_CatVal_4_0">
+          <End Type="KBaseDBModel.CatType" Role="CatType" Multiplicity="1" />
+          <End Type="KBaseDBModel.CatVal" Role="CatVal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatType">
+              <PropertyRef Name="CatTypeId" />
+            </Principal>
+            <Dependent Role="CatVal">
+              <PropertyRef Name="CatTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatVal_0_0">
+          <End Type="KBaseDBModel.CatVal" Role="CatVal" Multiplicity="0..1" />
+          <End Type="KBaseDBModel.CatVal" Role="CatVal1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="CatVal1">
+              <PropertyRef Name="CatParent3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatVal_1_0">
+          <End Type="KBaseDBModel.CatVal" Role="CatVal" Multiplicity="0..1" />
+          <End Type="KBaseDBModel.CatVal" Role="CatVal1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="CatVal1">
+              <PropertyRef Name="CatParent2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatVal_2_0">
+          <End Type="KBaseDBModel.CatVal" Role="CatVal" Multiplicity="0..1" />
+          <End Type="KBaseDBModel.CatVal" Role="CatVal1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="CatVal1">
+              <PropertyRef Name="CatParent1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatVal_3_0">
+          <End Type="KBaseDBModel.CatVal" Role="CatVal" Multiplicity="0..1" />
+          <End Type="KBaseDBModel.CatVal" Role="CatVal1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="CatVal1">
+              <PropertyRef Name="CatParent0" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="KnowledgeAreaId" Type="Int64" Nullable="false" />
+          <Property Name="ThemeId" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Tags" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" />
+          <Property Name="ModificationDate" Type="DateTime" />
+          <NavigationProperty Name="Theme" Relationship="KBaseDBModel.FK_Article_0_0" FromRole="Article" ToRole="CatVal" />
+          <NavigationProperty Name="KnowledgeArea" Relationship="KBaseDBModel.FK_Article_1_0" FromRole="Article" ToRole="CatVal" />
+          <NavigationProperty Name="ArticleContent" Relationship="KBaseDBModel.FK_ArticleContent_1_0" FromRole="Article" ToRole="ArticleContent" />
+        </EntityType>
+        <EntityType Name="ArticleContent">
+          <Key>
+            <PropertyRef Name="ArticleContentId" />
+          </Key>
+          <Property Name="ArticleContentId" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleId" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectTypeId" Type="Int64" Nullable="false" />
+          <Property Name="Object" Type="Binary" Nullable="false" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="ObjectUrl" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" />
+          <Property Name="ModificationDate" Type="DateTime" />
+          <Property Name="ObjectIndex" Type="Int64" />
+          <NavigationProperty Name="Article" Relationship="KBaseDBModel.FK_ArticleContent_1_0" FromRole="ArticleContent" ToRole="Article" />
+          <NavigationProperty Name="ObjectType" Relationship="KBaseDBModel.FK_ArticleContent_0_0" FromRole="ArticleContent" ToRole="CatVal" />
+        </EntityType>
+        <Association Name="FK_Article_0_0">
+          <End Type="KBaseDBModel.CatVal" Role="CatVal" Multiplicity="1" />
+          <End Type="KBaseDBModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="ThemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_1_0">
+          <End Type="KBaseDBModel.CatVal" Role="CatVal" Multiplicity="1" />
+          <End Type="KBaseDBModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="KnowledgeAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleContent_1_0">
+          <End Type="KBaseDBModel.Article" Role="Article" Multiplicity="1" />
+          <End Type="KBaseDBModel.ArticleContent" Role="ArticleContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="ArticleContent">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleContent_0_0">
+          <End Type="KBaseDBModel.CatVal" Role="CatVal" Multiplicity="1" />
+          <End Type="KBaseDBModel.ArticleContent" Role="ArticleContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatVal">
+              <PropertyRef Name="CatValId" />
+            </Principal>
+            <Dependent Role="ArticleContent">
+              <PropertyRef Name="ObjectTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KBaseDBModelStoreContainer" CdmEntityContainer="KBaseDBEntities">
+          <EntitySetMapping Name="CatType">
+            <EntityTypeMapping TypeName="KBaseDBModel.CatType">
+              <MappingFragment StoreEntitySet="CatType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CatTypeId" ColumnName="CatTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatVal">
+            <EntityTypeMapping TypeName="KBaseDBModel.CatVal">
+              <MappingFragment StoreEntitySet="CatVal">
+                <ScalarProperty Name="CatParent3" ColumnName="CatParent3" />
+                <ScalarProperty Name="CatParent2" ColumnName="CatParent2" />
+                <ScalarProperty Name="CatParent1" ColumnName="CatParent1" />
+                <ScalarProperty Name="CatParent0" ColumnName="CatParent0" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Val" ColumnName="Val" />
+                <ScalarProperty Name="CatTypeId" ColumnName="CatTypeId" />
+                <ScalarProperty Name="CatValId" ColumnName="CatValId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Article">
+            <EntityTypeMapping TypeName="KBaseDBModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ThemeId" ColumnName="ThemeId" />
+                <ScalarProperty Name="KnowledgeAreaId" ColumnName="KnowledgeAreaId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleContent">
+            <EntityTypeMapping TypeName="KBaseDBModel.ArticleContent">
+              <MappingFragment StoreEntitySet="ArticleContent">
+                <ScalarProperty Name="ObjectIndex" ColumnName="ObjectIndex" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ObjectUrl" ColumnName="ObjectUrl" />
+                <ScalarProperty Name="Object" ColumnName="Object" />
+                <ScalarProperty Name="ObjectTypeId" ColumnName="ObjectTypeId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="ArticleContentId" ColumnName="ArticleContentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

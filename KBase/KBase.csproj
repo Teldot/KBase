@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C9096B7E-68EE-4E57-BB6D-815A90199BCA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KBase.View</RootNamespace>
+    <AssemblyName>KBase</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>C:\Users\ND\Google Drive\Varios\KnowBase\v0.0.0.1\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C3EFFB478ABE2D6998DF0A7FCFC75249D356661D</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>KBase_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.SqlServerCompact.6.1.3\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebKitBrowser">
+      <HintPath>..\..\..\..\..\Downloads\WebKit.NET-0.5-bin-cairo\WebKit.NET-0.5-bin-cairo\bin\WebKitBrowser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AFWControls\UcContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AFWControls\UcContent.Designer.cs">
+      <DependentUpon>UcContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AFWControls\UcRemovableLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AFWControls\UcRemovableLabel.Designer.cs">
+      <DependentUpon>UcRemovableLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AFWControls\UcSingleTextEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AFWControls\UcSingleTextEditor.Designer.cs">
+      <DependentUpon>UcSingleTextEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AFWControls\UcMultiTextEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AFWControls\UcMultiTextEditor.Designer.cs">
+      <DependentUpon>UcMultiTextEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AFWControls\UcWebContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AFWControls\UcWebContent.Designer.cs">
+      <DependentUpon>UcWebContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FAdminCats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FAdminCats.Designer.cs">
+      <DependentUpon>FAdminCats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FArticle.Designer.cs">
+      <DependentUpon>FArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FPreferences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FPreferences.Designer.cs">
+      <DependentUpon>FPreferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MDIParentMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MDIParentMain.Designer.cs">
+      <DependentUpon>MDIParentMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AFWControls\UcRemovableLabel.resx">
+      <DependentUpon>UcRemovableLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AFWControls\UcSingleTextEditor.resx">
+      <DependentUpon>UcSingleTextEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AFWControls\UcMultiTextEditor.resx">
+      <DependentUpon>UcMultiTextEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AFWControls\UcWebContent.resx">
+      <DependentUpon>UcWebContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FAdminCats.resx">
+      <DependentUpon>FAdminCats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FArticle.resx">
+      <DependentUpon>FArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FPreferences.resx">
+      <DependentUpon>FPreferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MDIParentMain.resx">
+      <DependentUpon>MDIParentMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="KBase_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\KBase.Data.Cat.CatType.datasource" />
+    <None Include="Properties\DataSources\KBase.Data.Cat.CatVal.datasource" />
+    <None Include="Properties\DataSources\KBase.Data.Entities.Article.datasource" />
+    <None Include="Properties\DataSources\KBase.Data.Entities.ArticleFile.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KBase.Data\KBase.Data.csproj">
+      <Project>{b0514eef-9efc-4317-a377-916f857ce686}</Project>
+      <Name>KBase.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KBase.Logic\KBase.Logic.csproj">
+      <Project>{ec16a87a-ee93-47fd-ab5e-9cab76dfac02}</Project>
+      <Name>KBase.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\configIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Config-05-512.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Config-05-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-9-film.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-16-print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-17-bin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-31-pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-51-link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-82-refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-119-embed-close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-137-cogwheel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-138-cogwheels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-139-picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-145-folder-open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-146-folder-plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-147-folder-minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-191-plus-sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-193-remove-sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-291-skull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-446-floppy-remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-448-floppy-open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-138-cogwheels.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-28-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glyphicons-508-cluster.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
